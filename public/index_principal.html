@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión de Bodega H4</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Nuestros estilos -->
+    <link rel="stylesheet" href="assets/css/styles_principal.css">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-boxes me-2"></i>Bodega H4
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Funcionalidades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#screenshots">Capturas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php">Iniciar Sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sección Hero -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-4">Sistema de Gestión de Inventario</h1>
+            <p class="lead mb-5">Una solución completa para el control de stock, movimientos y reportes de tu bodega</p>
+            <a href="index.php" class="btn btn-primary btn-lg px-4 me-2">
+                <i class="fas fa-sign-in-alt me-2"></i>Iniciar Sesión
+            </a>
+            <a href="#features" class="btn btn-outline-light btn-lg px-4">
+                <i class="fas fa-info-circle me-2"></i>Más Información
+            </a>
+        </div>
+    </section>
+
+    <!-- Sección de Funcionalidades -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Funcionalidades Principales</h2>
+                <p class="lead text-muted">Descubre todo lo que nuestro sistema puede hacer por tu bodega</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 card-hover">
+                        <div class="card-body text-center">
+                            <div class="feature-icon">
+                                <i class="fas fa-box-open"></i>
+                            </div>
+                            <h4 class="card-title">Gestión de Inventario</h4>
+                            <p class="card-text">
+                                Registra, edita y elimina productos de tu bodega con información detallada como código, nombre, descripción, categoría y ubicación.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100 card-hover">
+                        <div class="card-body text-center">
+                            <div class="feature-icon">
+                                <i class="fas fa-exchange-alt"></i>
+                            </div>
+                            <h4 class="card-title">Control de Movimientos</h4>
+                            <p class="card-text">
+                                Registra entradas y salidas de productos, con seguimiento de cantidades, motivos y usuarios responsables.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100 card-hover">
+                        <div class="card-body text-center">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h4 class="card-title">Reportes y Análisis</h4>
+                            <p class="card-text">
+                                Genera reportes de stock bajo, productos agotados y movimientos recientes para una mejor toma de decisiones.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100 card-hover">
+                        <div class="card-body text-center">
+                            <div class="feature-icon">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <h4 class="card-title">Alertas de Stock</h4>
+                            <p class="card-text">
+                                Sistema de alertas visuales para productos con stock bajo o agotado según los niveles mínimos configurados.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100 card-hover">
+                        <div class="card-body text-center">
+                            <div class="feature-icon">
+                                <i class="fas fa-history"></i>
+                            </div>
+                            <h4 class="card-title">Historial Completo</h4>
+                            <p class="card-text">
+                                Accede al historial completo de movimientos con filtros por tipo, producto y fechas para auditorías y seguimiento.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100 card-hover">
+                        <div class="card-body text-center">
+                            <div class="feature-icon">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <h4 class="card-title">Acceso Seguro</h4>
+                            <p class="card-text">
+                                Sistema de autenticación con usuarios y contraseñas para garantizar la seguridad de la información.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Capturas -->
+    <section id="screenshots" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Vista Previa del Sistema</h2>
+                <p class="lead text-muted">Conoce la interfaz de nuestro sistema de gestión</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card card-hover">
+                        <img src="assets/img/inventario.jpg" class="card-img-top screenshot" alt="Pantalla de Inventario">
+                        <div class="card-body">
+                            <h5 class="card-title">Gestión de Inventario</h5>
+                            <p class="card-text">
+                                Interfaz intuitiva para administrar todos los productos con búsqueda y filtros avanzados.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="card card-hover">
+                        <img src="assets/img/movimientos.jpg" class="card-img-top screenshot" alt="Pantalla de Movimientos">
+                        <div class="card-body">
+                            <h5 class="card-title">Registro de Movimientos</h5>
+                            <p class="card-text">
+                                Formulario para registrar entradas y salidas de productos con todos los detalles.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="card card-hover">
+                        <img src="assets/img/reportes.jpg" class="card-img-top screenshot" alt="Pantalla de Reportes">
+                        <div class="card-body">
+                            <h5 class="card-title">Reportes de Stock</h5>
+                            <p class="card-text">
+                                Visualización clara de productos con stock bajo, agotados y con niveles adecuados.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Llamado a la acción -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container text-center">
+            <h2 class="fw-bold mb-4">¿Listo para optimizar tu bodega?</h2>
+            <p class="lead mb-4">Comienza a gestionar tu inventario de manera profesional y eficiente</p>
+            <a href="index.php" class="btn btn-light btn-lg px-4">
+                <i class="fas fa-rocket me-2"></i>Iniciar Ahora
+            </a>
+        </div>
+    </section>
+
+    <!-- Pie de página -->
+    <footer class="py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-boxes me-2"></i>Bodega H4 C.A</h5>
+                    <p>Sistema de Gestión de Inventario</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <h5>Contacto</h5>
+                    <p><i class="fas fa-phone me-2"></i>+58 412 0253486</p>
+                    <p><i class="fas fa-envelope me-2"></i>BodegaH4@gmail.com</p>
+                </div>
+            </div>
+            <hr class="my-3 bg-light">
+            <div class="text-center">
+                <p class="mb-0">© 2025 Sistema de Gestión para Bodega H4 C.A. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
