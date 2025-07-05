@@ -79,6 +79,7 @@ class ReportController extends BaseController { // Extender de BaseController
         }
 
         $filename = 'reporte_inventario_' . date('YmdHis') . '.pdf';
+        ob_end_clean(); // Limpiar cualquier salida previa
         header('Content-Type: application/pdf');
         header('Content-Disposition: attachment; filename="' . $filename . '"');
         $pdf->Output('D', $filename);
@@ -119,6 +120,7 @@ class ReportController extends BaseController { // Extender de BaseController
         $writer = new Xlsx($spreadsheet);
         $filename = 'reporte_agotados_' . date('YmdHis') . '.xlsx';
 
+        ob_end_clean(); // Limpiar cualquier salida previa
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment; filename="' . $filename . '"');
         $writer->save('php://output');
