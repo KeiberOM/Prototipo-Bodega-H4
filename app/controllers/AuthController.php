@@ -1,10 +1,10 @@
 <?php
-namespace App\Controllers; // Añadir namespace
+namespace App\Controllers;
 
-use App\Models\User; // Usar el namespace completo
+use App\Models\User;
 use PDO;
 
-class AuthController extends BaseController { // Extender de BaseController
+class AuthController extends BaseController {
     private $userModel;
 
     public function __construct(PDO $conn) {

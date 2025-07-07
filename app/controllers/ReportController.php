@@ -1,25 +1,26 @@
 <?php
-namespace App\Controllers; // Añadir namespace
+namespace App\Controllers;
 
-use App\Models\Product; // Usar el namespace completo
-use App\Models\Movement; // Usar el namespace completo
+use App\Models\Product;
+use App\Models\Movement;
 use Fpdf\Fpdf;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PDO;
 
-class ReportController extends BaseController { // Extender de BaseController
-    private $productModel;
-    private $movementModel;
+class ReportController extends BaseController {
+    private Product $productModel; // Tipado de propiedad
+    private Movement $movementModel; // Tipado de propiedad
 
     public function __construct(PDO $conn) {
-        parent::__construct($conn); // Llamar al constructor de la clase base
+        parent::__construct($conn);
         $this->productModel = new Product($conn);
         $this->movementModel = new Movement($conn);
     }
 
-    public function stockReports() {
+    public function stockReports(): void {
         $this->checkAuth();
+        $this->checkRole('admin'); // Solo administradores pueden ver reportes
 
         $productos_bajo_stock = $this->productModel->getProductsBelowMinStock();
         $productos_agotados = $this->productModel->getOutOfStockProducts();
@@ -34,8 +35,9 @@ class ReportController extends BaseController { // Extender de BaseController
         ]);
     }
 
-    public function graphicReports() {
+    public function graphicReports(): void {
         $this->checkAuth();
+        $this->checkRole('admin'); // Solo administradores pueden ver reportes
 
         $data_for_pie_chart = $this->productModel->getProductsCountByCategory();
         $data_for_bar_chart = $this->movementModel->getMovementsCountByType();
@@ -48,8 +50,9 @@ class ReportController extends BaseController { // Extender de BaseController
         ]);
     }
 
-    public function generatePdf() {
+    public function generatePdf(): void {
         $this->checkAuth();
+        $this->checkRole('admin'); // Solo administradores pueden generar PDFs
 
         $products = $this->productModel->getAllProducts();
         $pdf = new Fpdf();
@@ -79,15 +82,16 @@ class ReportController extends BaseController { // Extender de BaseController
         }
 
         $filename = 'reporte_inventario_' . date('YmdHis') . '.pdf';
-        ob_end_clean(); // Limpiar cualquier salida previa
+        ob_end_clean();
         header('Content-Type: application/pdf');
         header('Content-Disposition: attachment; filename="' . $filename . '"');
         $pdf->Output('D', $filename);
         exit();
     }
 
-    public function generateExcel() {
+    public function generateExcel(): void {
         $this->checkAuth();
+        $this->checkRole('admin'); // Solo administradores pueden generar Excels
 
         $products_out_of_stock = $this->productModel->getOutOfStockProducts();
 
@@ -120,7 +124,7 @@ class ReportController extends BaseController { // Extender de BaseController
         $writer = new Xlsx($spreadsheet);
         $filename = 'reporte_agotados_' . date('YmdHis') . '.xlsx';
 
-        ob_end_clean(); // Limpiar cualquier salida previa
+        ob_end_clean();
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment; filename="' . $filename . '"');
         $writer->save('php://output');

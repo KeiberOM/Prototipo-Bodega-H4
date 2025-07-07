@@ -1,5 +1,4 @@
 <?php
-// Obtener la ruta base para los enlaces
 $base_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'];
 $script_name = dirname($_SERVER['SCRIPT_NAME']);
 $base_url .= ($script_name === '/' || $script_name === '\\') ? '' : $script_name;

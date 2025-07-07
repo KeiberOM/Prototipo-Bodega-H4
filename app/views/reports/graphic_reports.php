@@ -18,6 +18,7 @@
 
 <!-- Incluir Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <!-- Script para los datos y configuración de los gráficos -->
 <script>
     // Datos pasados desde el controlador

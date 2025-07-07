@@ -8,11 +8,16 @@
         <?php endif; ?>
     </div>
     <div class="card-body">
-        <?php if (!empty($error)): ?>
+        <?php
+        // Asegúrate de que $error y $exito estén definidos
+        $error = $error ?? '';
+        $exito = $exito ?? '';
+
+        if ($error !== ''): ?>
             <div class="alert alert-danger"><?php echo htmlspecialchars($error); ?></div>
         <?php endif; ?>
-        
-        <?php if (!empty($exito)): ?>
+
+        <?php if ($exito !== ''): ?>
             <div class="alert alert-success"><?php echo htmlspecialchars($exito); ?></div>
         <?php endif; ?>
 
@@ -42,21 +47,21 @@
                     <?php else: ?>
                         <?php foreach ($productos as $row): ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($row['codigo']); ?></td>
-                            <td><?php echo htmlspecialchars($row['nombre']); ?></td>
-                            <td><?php echo htmlspecialchars($row['descripcion']); ?></td>
-                            <td><?php echo htmlspecialchars($row['categoria']); ?></td>
-                            <td><?php echo htmlspecialchars($row['ubicacion']); ?></td>
-                            <td><?php echo htmlspecialchars($row['cantidad']); ?></td>
+                            <td><?php echo htmlspecialchars($row['codigo'] ?? 'N/A'); ?></td>
+                            <td><?php echo htmlspecialchars($row['nombre'] ?? 'N/A'); ?></td>
+                            <td><?php echo htmlspecialchars($row['descripcion'] ?? 'N/A'); ?></td>
+                            <td><?php echo htmlspecialchars($row['categoria'] ?? 'N/A'); ?></td>
+                            <td><?php echo htmlspecialchars($row['ubicacion'] ?? 'N/A'); ?></td>
+                            <td><?php echo htmlspecialchars($row['cantidad'] ?? 0); ?></td>
                             <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'): ?>
                                 <td>
                                     <div class="btn-group btn-group-sm" role="group">
-                                        <a href="<?= htmlspecialchars($base_url) ?>/editar?id=<?= $row['id'] ?>" 
+                                        <a href="<?= htmlspecialchars($base_url) ?>/editar?id=<?= htmlspecialchars($row['id'] ?? '') ?>"
                                            class="btn btn-warning"
                                            title="Editar">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="<?= htmlspecialchars($base_url) ?>/confirmar_eliminar?id=<?= $row['id'] ?>" 
+                                        <a href="<?= htmlspecialchars($base_url) ?>/confirmar_eliminar?id=<?= htmlspecialchars($row['id'] ?? '') ?>"
                                            class="btn btn-danger"
                                            title="Eliminar">
                                             <i class="fas fa-trash-alt"></i>

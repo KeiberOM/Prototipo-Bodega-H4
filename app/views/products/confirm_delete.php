@@ -1,36 +1,20 @@
-<?php
-// Obtener la ruta base para los enlaces
-$base_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'];
-$script_name = dirname($_SERVER['SCRIPT_NAME']);
-$base_url .= ($script_name === '/' || $script_name === '\\') ? '' : $script_name;
-?>
-
-<div class="card">
+<div class="card border-danger">
     <div class="card-header bg-danger text-white">
-        <h5 class="mb-0"><i class="fas fa-exclamation-triangle me-2"></i>Confirmar Eliminación</h5>
+        <h5 class="mb-0"><i class="fas fa-exclamation-triangle me-2"></i>Confirmar eliminación</h5>
     </div>
-    <div class="card-body text-center">
-        <div class="alert alert-warning" role="alert">
-            <h4 class="alert-heading">¡Advertencia!</h4>
-            <p>¿Está seguro que desea eliminar el siguiente producto?</p>
-            <p class="mb-0">Esta acción es irreversible y también eliminará todos los movimientos asociados a este producto.</p>
+    <div class="card-body">
+        <div class="alert alert-warning">
+            <p class="mb-0">¿Está seguro que desea eliminar el producto <strong><?= htmlspecialchars($producto['nombre']) ?></strong> (código: <?= htmlspecialchars($producto['codigo']) ?>)?</p>
+            <p class="mb-0 mt-2">Esta acción eliminará también todos los movimientos asociados y no se puede deshacer.</p>
         </div>
 
-        <div class="card mb-4 text-start">
-            <div class="card-body">
-                <p><strong>Nombre:</strong> <?php echo htmlspecialchars($producto['nombre']); ?></p>
-                <p><strong>Código:</strong> <?php echo htmlspecialchars($producto['codigo']); ?></p>
-                <p><strong>Ubicación:</strong> <?php echo htmlspecialchars($producto['ubicacion']); ?></p>
-                <p><strong>Stock actual:</strong> <?php echo htmlspecialchars($producto['cantidad']); ?></p>
-            </div>
-        </div>
-
-        <div class="d-flex justify-content-center">
-            <a href="<?php echo htmlspecialchars($base_url); ?>/consultar" class="btn btn-secondary me-3">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a href="consultar" class="btn btn-secondary me-md-2">
                 <i class="fas fa-times me-1"></i> Cancelar
             </a>
-            <a href="<?php echo htmlspecialchars($base_url); ?>/eliminar?id=<?php echo htmlspecialchars($producto['id']); ?>&csrf_token=<?php echo htmlspecialchars($csrf_token); ?>" class="btn btn-danger">
-                <i class="fas fa-trash-alt me-1"></i> Sí, eliminar
+            <a href="eliminar?id=<?= $producto['id'] ?>&csrf_token=<?= htmlspecialchars($csrf_token) ?>" 
+               class="btn btn-danger">
+                <i class="fas fa-trash-alt me-1"></i> Confirmar eliminación
             </a>
         </div>
     </div>

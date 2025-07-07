@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers; // Añadir namespace
+namespace App\Controllers;
 
 use PDO;
 

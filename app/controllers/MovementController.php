@@ -1,8 +1,8 @@
 <?php
-namespace App\Controllers; // Añadir namespace
+namespace App\Controllers;
 
-use App\Models\Product; // Usar el namespace completo
-use App\Models\Movement; // Usar el namespace completo
+use App\Models\Product;
+use App\Models\Movement;
 use PDO;
 use PDOException;
 use Fpdf\Fpdf;

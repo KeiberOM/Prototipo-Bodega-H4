@@ -1,11 +1,11 @@
 <?php
-namespace App\Controllers; // Añadir namespace
+namespace App\Controllers;
 
-use App\Models\Product; // Usar el namespace completo
-use App\Models\Movement; // Usar el namespace completo
+use App\Models\Product;
+use App\Models\Movement;
 use PDO;
 
-class DashboardController extends BaseController { // Extender de BaseController
+class DashboardController extends BaseController {
     private $productModel;
     private $movementModel;
 

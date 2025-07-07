@@ -1,36 +1,32 @@
 <?php
 session_start();
 
-// Cargar el autoloader de Composer
 require_once __DIR__ . '/../vendor/autoload.php';
 
-// Cargar variables de entorno
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../config');
 $dotenv->load();
 
-// Autocarga de clases para modelos y controladores (PSR-4)
-// Ya no es necesario spl_autoload_register si todas las clases están bajo el namespace App\
-// y se configuran en composer.json
-// require_once __DIR__ . '/../app/models/Database.php'; // Ya no es necesario si se usa PSR-4
-
-// Conexión a la base de datos
 try {
-    $db = new App\Models\Database(); // Usar el namespace completo
+    $db = new App\Models\Database();
     $conn = $db->getConnection();
-} catch (Exception $e) {
+} catch (\RuntimeException $e) { // Capturar la excepción más genérica si se lanza desde Database
     error_log("Error fatal de conexión a la base de datos: " . $e->getMessage());
-    header("HTTP/1.1 500 Internal Server Error");
+    http_response_code(500); // Enviar código de estado HTTP 500
+    echo "<h1>Error interno del servidor</h1><p>No se pudo conectar a la base de datos. Por favor, inténtelo más tarde.</p>";
+    exit();
+} catch (\PDOException $e) { // Capturar PDOException directamente si no se lanza RuntimeException
+    error_log("Error fatal de conexión a la base de datos: " . $e->getMessage());
+    http_response_code(500);
     echo "<h1>Error interno del servidor</h1><p>No se pudo conectar a la base de datos. Por favor, inténtelo más tarde.</p>";
     exit();
 }
 
-// Simple enrutamiento
+
 $request_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $script_name = dirname($_SERVER['SCRIPT_NAME']);
 $path = str_replace($script_name, '', $request_uri);
 $path = trim($path, '/');
 
-// Mapeo de rutas a controladores y acciones
 $routes = [
     '' => ['controller' => 'DashboardController', 'method' => 'index'],
     'panelprincipal' => ['controller' => 'DashboardController', 'method' => 'index'],
@@ -54,7 +50,7 @@ $controllerName = null;
 $methodName = null;
 
 if (isset($routes[$path])) {
-    $controllerName = 'App\\Controllers\\' . $routes[$path]['controller']; // Usar namespace completo
+    $controllerName = 'App\\Controllers\\' . $routes[$path]['controller'];
     $methodName = $routes[$path]['method'];
 } elseif ($path === 'index.php' || $path === 'index') {
     $controllerName = 'App\\Controllers\\AuthController';
@@ -67,20 +63,17 @@ if ($controllerName && $methodName) {
         if (method_exists($controller, $methodName)) {
             $controller->$methodName();
         } else {
-            // Manejar método no encontrado
-            header("HTTP/1.0 404 Not Found");
+            http_response_code(404);
             echo "<h1>404 Not Found</h1><p>El método solicitado no existe.</p>";
             exit();
         }
     } else {
-        // Manejar controlador no encontrado
-        header("HTTP/1.0 404 Not Found");
+        http_response_code(404);
         echo "<h1>404 Not Found</h1><p>El controlador solicitado no existe.</p>";
         exit();
     }
 } else {
-    // Manejar ruta no encontrada
-    header("HTTP/1.0 404 Not Found");
+    http_response_code(404);
     echo "<h1>404 Not Found</h1><p>La página solicitada no existe.</p>";
     exit();
 }
